@@ -18,5 +18,16 @@ class NewListTableViewController:UITableViewController {
     
     private func setUpView() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b0b43f608c9a422fafbffcd40814a4ac"
+        
+    
+        WebService().getArticles(url: URL(string: url)!) { (result) in
+            print("result ==> \(result)")
+        }
+    }
+    
+    deinit {
+        print("deinitialized")
     }
 }

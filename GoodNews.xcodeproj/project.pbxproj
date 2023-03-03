@@ -16,6 +16,8 @@
 		0410BF5E29B190B2008673DC /* GoodNewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410BF5D29B190B2008673DC /* GoodNewsTests.swift */; };
 		0410BF6929B190B2008673DC /* GoodNewsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410BF6829B190B2008673DC /* GoodNewsUITests.swift */; };
 		0410BF7E29B190E3008673DC /* NewListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410BF7D29B190E3008673DC /* NewListTableViewController.swift */; };
+		04B260D529B1DFED00582892 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B260D429B1DFED00582892 /* WebService.swift */; };
+		04B260E129B1FDC100582892 /* ArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B260E029B1FDC100582892 /* ArticleViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		0410BF6829B190B2008673DC /* GoodNewsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodNewsUITests.swift; sourceTree = "<group>"; };
 		0410BF6A29B190B2008673DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0410BF7D29B190E3008673DC /* NewListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListTableViewController.swift; sourceTree = "<group>"; };
+		04B260D429B1DFED00582892 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		04B260E029B1FDC100582892 /* ArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 		0410BF4529B190AD008673DC /* GoodNews */ = {
 			isa = PBXGroup;
 			children = (
+				04B260DF29B1FDA800582892 /* ViewModels */,
+				045B044029B1DF5700147305 /* Service */,
 				0410BF7929B190C6008673DC /* Controller */,
 				0410BF4629B190AD008673DC /* AppDelegate.swift */,
 				0410BF4829B190AD008673DC /* SceneDelegate.swift */,
@@ -137,6 +143,23 @@
 				0410BF7D29B190E3008673DC /* NewListTableViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		045B044029B1DF5700147305 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				04B260D429B1DFED00582892 /* WebService.swift */,
+			);
+			name = Service;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04B260DF29B1FDA800582892 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				04B260E029B1FDC100582892 /* ArticleViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +295,8 @@
 				0410BF7E29B190E3008673DC /* NewListTableViewController.swift in Sources */,
 				0410BF4B29B190AD008673DC /* ViewController.swift in Sources */,
 				0410BF4729B190AD008673DC /* AppDelegate.swift in Sources */,
+				04B260E129B1FDC100582892 /* ArticleViewModel.swift in Sources */,
+				04B260D529B1DFED00582892 /* WebService.swift in Sources */,
 				0410BF4929B190AD008673DC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
