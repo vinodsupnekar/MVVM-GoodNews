@@ -11,44 +11,35 @@ public struct Root: Decodable {
     let articles: [NewsFeed]
 }
 
-public struct NewsFeed: Decodable {
-    let description: String?
-    let title: String
+class WebService : ArticlesLoader {
     
-}
+    private let url: URL
+    private let client: HTTPClient
 
-public enum HTTPClientResult {
-    case success([NewsFeed])
-    case failure(Error)
-}
-
-class WebService {
-    
     private struct UnexpectedValueReprentation: Error {
     }
     
-    func getArticles(url: URL, completion: @escaping ((HTTPClientResult) -> Void)) {
+    public init(url:URL, client: HTTPClient) {
+        self.url = url
+        self.client = client
+    }
+    
+    func load(completion: @escaping (ArticlesFeedResult) -> Void) {
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                completion(HTTPClientResult.failure(error))
-            } else if let data = data,
-                      let response = response as? HTTPURLResponse {
-//                completion(.success(data, response))
+        self.client.getArticles(from: self.url) { result in
+            switch result {
+            case let .success(data, _):
                 do {
-//                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                     let root =  try JSONDecoder().decode(Root.self, from: data)
                     completion(.success(root.articles))
                 } catch {
                     completion(.failure(UnexpectedValueReprentation()))
                 }
-            } else {
-                completion(.failure(UnexpectedValueReprentation()))
+            case let .failure(error):
+                completion(ArticlesFeedResult.failure(error))
             }
             
-        }.resume()
+        }
     }
 }
 

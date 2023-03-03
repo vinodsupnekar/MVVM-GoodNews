@@ -19,6 +19,9 @@
 		04B260D529B1DFED00582892 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B260D429B1DFED00582892 /* WebService.swift */; };
 		04B260E129B1FDC100582892 /* ArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B260E029B1FDC100582892 /* ArticleViewModel.swift */; };
 		04B260E729B201A400582892 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B260E629B201A400582892 /* ArticleTableViewCell.swift */; };
+		04B260EF29B20FD900582892 /* ArticleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B260EE29B20FD900582892 /* ArticleLoader.swift */; };
+		04B260F429B2122700582892 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B260F329B2122700582892 /* HTTPClient.swift */; };
+		04B260F929B2125300582892 /* URLSessionHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B260F829B2125300582892 /* URLSessionHttpClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		04B260D429B1DFED00582892 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		04B260E029B1FDC100582892 /* ArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
 		04B260E629B201A400582892 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		04B260EE29B20FD900582892 /* ArticleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleLoader.swift; sourceTree = "<group>"; };
+		04B260F329B2122700582892 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		04B260F829B2125300582892 /* URLSessionHttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHttpClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +158,9 @@
 			isa = PBXGroup;
 			children = (
 				04B260D429B1DFED00582892 /* WebService.swift */,
+				04B260EE29B20FD900582892 /* ArticleLoader.swift */,
+				04B260F329B2122700582892 /* HTTPClient.swift */,
+				04B260F829B2125300582892 /* URLSessionHttpClient.swift */,
 			);
 			name = Service;
 			path = Controller;
@@ -304,9 +313,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0410BF7E29B190E3008673DC /* NewListTableViewController.swift in Sources */,
+				04B260F929B2125300582892 /* URLSessionHttpClient.swift in Sources */,
+				04B260EF29B20FD900582892 /* ArticleLoader.swift in Sources */,
 				0410BF4B29B190AD008673DC /* ViewController.swift in Sources */,
 				0410BF4729B190AD008673DC /* AppDelegate.swift in Sources */,
 				04B260E129B1FDC100582892 /* ArticleViewModel.swift in Sources */,
+				04B260F429B2122700582892 /* HTTPClient.swift in Sources */,
 				04B260D529B1DFED00582892 /* WebService.swift in Sources */,
 				04B260E729B201A400582892 /* ArticleTableViewCell.swift in Sources */,
 				0410BF4929B190AD008673DC /* SceneDelegate.swift in Sources */,

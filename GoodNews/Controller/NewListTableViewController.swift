@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+
+
 class NewListTableViewController:UITableViewController {
     
     var articlesViewModel: ArticleListViewModel!
@@ -21,8 +23,10 @@ class NewListTableViewController:UITableViewController {
     private func setUpView() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
-        let url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b0b43f608c9a422fafbffcd40814a4ac"
-        WebService().getArticles(url: URL(string: url)!) { (result) in
+        let url = URL(string:"https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b0b43f608c9a422fafbffcd40814a4ac")!
+        
+        let webservice = WebService(url: url, client: URLSessionHTTPClient(URLSession.shared))
+        webservice.load { (result) in
             switch result {
             case let .success(articles):
                 self.articlesViewModel = ArticleListViewModel(articles: articles)
