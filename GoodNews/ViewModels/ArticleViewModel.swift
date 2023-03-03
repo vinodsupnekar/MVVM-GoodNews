@@ -10,7 +10,7 @@ import Foundation
 class ArticleListViewModel {
     var articles: [NewsFeed] = []
     
-    var feedBox:Box<[NewsFeed]> = Box([])
+    var feedBox:Box<[NewsFeed]>? = Box([])
     
     init(_ articles: [NewsFeed] = []) {
         self.articles = articles
@@ -26,7 +26,7 @@ class ArticleListViewModel {
             
             switch result {
             case let .success(articles):
-                self.feedBox.value =  articles
+                self.feedBox?.value =  articles
                 
 //               
             case let .failure(error):

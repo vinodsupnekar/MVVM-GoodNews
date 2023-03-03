@@ -46,6 +46,20 @@ class GoodNewsTests: XCTestCase {
         
     }
     
+    func test_bindingToViewModel_passesCorrectData() {
+        let viewModel = ArticleListViewModel()
+        
+        let exp = expectation(description: "wait for api call and assign box value")
+        viewModel.feedBox?.bind { newsFeeds in
+            XCTAssertEqual(newsFeeds.count, 2)
+            exp.fulfill()
+        }
+                
+        viewModel.feedBox?.value = [NewsFeed(description: "", title: ""), NewsFeed(description: "aaa", title: "aasd")]
+        
+        wait(for: [exp], timeout: 1)
+    }
+    
     func trackMemoryLeak(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
         addTeardownBlock { [weak instance] in
             XCTAssertNil(instance, "instance should have been de-allocated, potential memory leak")

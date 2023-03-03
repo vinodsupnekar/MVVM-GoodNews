@@ -22,7 +22,7 @@ class NewListTableViewController:UITableViewController {
     private func setUpView() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
-        viewModel.feedBox.bind { [weak self] (articles) in
+        viewModel.feedBox?.bind { [weak self] (articles) in
             guard let self = self else {return}
             self.viewModel.articles = articles
                            DispatchQueue.main.async {
