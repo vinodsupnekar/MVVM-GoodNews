@@ -7,8 +7,33 @@
 
 import Foundation
 
-struct ArticleListViewModel {
-    let articles: [NewsFeed]
+class ArticleListViewModel {
+    var articles: [NewsFeed] = []
+    
+    var feedBox:Box<[NewsFeed]> = Box([])
+    
+    init(_ articles: [NewsFeed] = []) {
+        self.articles = articles
+    }
+
+    func loadArticles() {
+        let url = URL(string:"https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b0b43f608c9a422fafbffcd40814a4ac")!
+//        feedLoading.value = "Loading..."
+
+        let webservice = WebService(url: url, client: URLSessionHTTPClient(URLSession.shared))
+        webservice.load { [weak self] (result) in
+            guard let self = self else { return }
+            
+            switch result {
+            case let .success(articles):
+                self.feedBox.value =  articles
+                
+//               
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
 }
 
 extension ArticleListViewModel {
@@ -17,7 +42,7 @@ extension ArticleListViewModel {
     }
     
     func numberOfRowsInSection(_ section: Int) -> Int {
-        return self.articles.count
+        return self.articles.count ?? 0
     }
     
     func articleAtIndex(_ index: Int) -> ArticleViewModel {

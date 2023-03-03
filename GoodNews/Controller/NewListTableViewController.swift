@@ -9,10 +9,9 @@ import Foundation
 import UIKit
 
 
-
 class NewListTableViewController:UITableViewController {
     
-    var articlesViewModel: ArticleListViewModel!
+    let viewModel = ArticleListViewModel([])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,20 +22,15 @@ class NewListTableViewController:UITableViewController {
     private func setUpView() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
-        let url = URL(string:"https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b0b43f608c9a422fafbffcd40814a4ac")!
-        
-        let webservice = WebService(url: url, client: URLSessionHTTPClient(URLSession.shared))
-        webservice.load { (result) in
-            switch result {
-            case let .success(articles):
-                self.articlesViewModel = ArticleListViewModel(articles: articles)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case let .failure(error):
-                print(error)
-            }
+        viewModel.feedBox.bind { [weak self] (articles) in
+            guard let self = self else {return}
+            self.viewModel.articles = articles
+                           DispatchQueue.main.async {
+                               self.tableView.reloadData()
+                           }
         }
+        
+        viewModel.loadArticles()
     }
     
     deinit {
@@ -46,11 +40,11 @@ class NewListTableViewController:UITableViewController {
 
 extension NewListTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.articlesViewModel == nil ? 0 : self.articlesViewModel.numberOfSections()
+        return  self.viewModel.numberOfSections()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.articlesViewModel.numberOfRowsInSection(section)
+        return self.viewModel.numberOfRowsInSection(section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,10 +52,33 @@ extension NewListTableViewController {
           fatalError("ArticleTableViewCell not found")
         }
         
-        let articleVM = articlesViewModel.articleAtIndex(indexPath.row)
+        let articleVM = viewModel.articleAtIndex(indexPath.row)
         cell.configure(articleVM)
         
         return cell
+    }
+    
+}
+
+
+final class Box<T> {
+    
+    typealias Listner = (T) -> Void
+    var listener: Listner?
+    
+    var value: T {
+        didSet {
+            listener?(value)
+        }
+    }
+    
+    init(_ value: T) {
+        self.value = value
+    }
+    
+    func bind(listener: Listner?) {
+        self.listener = listener
+        listener?(value)
     }
     
 }
