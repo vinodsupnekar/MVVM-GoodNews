@@ -15,6 +15,7 @@
 		0410BF5329B190B1008673DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0410BF5129B190B1008673DC /* LaunchScreen.storyboard */; };
 		0410BF5E29B190B2008673DC /* GoodNewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410BF5D29B190B2008673DC /* GoodNewsTests.swift */; };
 		0410BF6929B190B2008673DC /* GoodNewsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410BF6829B190B2008673DC /* GoodNewsUITests.swift */; };
+		0410BF7E29B190E3008673DC /* NewListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410BF7D29B190E3008673DC /* NewListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		0410BF6429B190B2008673DC /* GoodNewsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoodNewsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0410BF6829B190B2008673DC /* GoodNewsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodNewsUITests.swift; sourceTree = "<group>"; };
 		0410BF6A29B190B2008673DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0410BF7D29B190E3008673DC /* NewListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		0410BF4529B190AD008673DC /* GoodNews */ = {
 			isa = PBXGroup;
 			children = (
+				0410BF7929B190C6008673DC /* Controller */,
 				0410BF4629B190AD008673DC /* AppDelegate.swift */,
 				0410BF4829B190AD008673DC /* SceneDelegate.swift */,
 				0410BF4A29B190AD008673DC /* ViewController.swift */,
@@ -126,6 +129,14 @@
 				0410BF6A29B190B2008673DC /* Info.plist */,
 			);
 			path = GoodNewsUITests;
+			sourceTree = "<group>";
+		};
+		0410BF7929B190C6008673DC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0410BF7D29B190E3008673DC /* NewListTableViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0410BF7E29B190E3008673DC /* NewListTableViewController.swift in Sources */,
 				0410BF4B29B190AD008673DC /* ViewController.swift in Sources */,
 				0410BF4729B190AD008673DC /* AppDelegate.swift in Sources */,
 				0410BF4929B190AD008673DC /* SceneDelegate.swift in Sources */,
