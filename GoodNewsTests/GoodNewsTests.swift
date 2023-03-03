@@ -14,6 +14,8 @@ class GoodNewsTests: XCTestCase {
         let testURL = URL(string:"https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b0b43f608c9a422fafbffcd40814a4ac")!
         let client = WebService(url: testURL, client: URLSessionHTTPClient())
         
+        trackMemoryLeak(client)
+        
         client.load { (result) in
             switch result {
             case let .success(articles):
@@ -30,6 +32,8 @@ class GoodNewsTests: XCTestCase {
         let config = URLSessionConfiguration.ephemeral
         let session = URLSession(configuration: config)
         let client = WebService(url: testURL, client: URLSessionHTTPClient(session))
+        
+        trackMemoryLeak(client)
 
         client.load { (result) in
             switch result {
@@ -40,6 +44,12 @@ class GoodNewsTests: XCTestCase {
             }
         }
         
+    }
+    
+    func trackMemoryLeak(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "instance should have been de-allocated, potential memory leak")
+        }
     }
     
 }
