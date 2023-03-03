@@ -10,24 +10,36 @@ import XCTest
 
 class GoodNewsTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func test_endToEndTestGET_ArticlesResult_matchesTestAccountData() {
+        let testURL = URL(string:"https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b0b43f608c9a422fafbffcd40814a4ac")!
+        let client = WebService(url: testURL, client: URLSessionHTTPClient())
+        
+        client.load { (result) in
+            switch result {
+            case let .success(articles):
+                XCTAssertEqual(articles.count, 20)
+            case let .failure(error):
+                XCTFail("expected success articles, but got \(error) instead")
+            }
         }
     }
+    
+    func test_endToAPICall_GET_ArticlesResult_withNonSingletonHTTPClient() {
+        let testURL = URL(string:"https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b0b43f608c9a422fafbffcd40814a4ac")!
+        
+        let config = URLSessionConfiguration.ephemeral
+        let session = URLSession(configuration: config)
+        let client = WebService(url: testURL, client: URLSessionHTTPClient(session))
 
+        client.load { (result) in
+            switch result {
+            case let .success(articles):
+                XCTAssertEqual(articles.count, 20)
+            case let .failure(error):
+                XCTFail("expected success articles, but got \(error) instead")
+            }
+        }
+        
+    }
+    
 }
